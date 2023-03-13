@@ -1,4 +1,4 @@
---Compared from DB EMCS on Development, DB EMCS_QA on QA, DB EMCS_Dev on Development
+--Compared from DB EMCS on Development, DB EMCS_QA on QA, DB EMCS_Dev on Development on 10/03/2023
 ALTER	TABLE Cargo
 ADD		TotalPackageBy NVARCHAR(MAX) NULL
 
