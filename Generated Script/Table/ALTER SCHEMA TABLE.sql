@@ -5,7 +5,10 @@ ADD		TotalPackageBy NVARCHAR(MAX) NULL
 ALTER	TABLE CiplForwader
 ADD		Type NVARCHAR(10) NULL,
 		ExportShipmentType NVARCHAR(MAX) NULL,
-		Vendor NVACRHAR(MAX) NULL
+		Vendor NVARCHAR(MAX) NULL
+
+ALTER	TABLE CiplItem
+ALTER 	COLUMN Sn NVARCHAR(50)
 
 ALTER TABLE [dbo].[DHLAttachment]  WITH CHECK ADD  CONSTRAINT [FK_DHLAttachment_DHLShipment] FOREIGN KEY([DHLShipmentID])
 REFERENCES [dbo].[DHLShipment] ([DHLShipmentID])
@@ -24,6 +27,12 @@ REFERENCES [dbo].[DHLShipment] ([DHLShipmentID])
 GO
 ALTER TABLE [dbo].[DHLPerson] CHECK CONSTRAINT [FK_DHLPerson_DHLShipment]
 GO
+
+ALTER 	TABLE DHLPerson
+ALTER 	COLUMN PhoneNumber NVARCHAR(20)
+
+ALTER 	TABLE DHLPerson
+ALTER 	COLUMN EmailAddress NVARCHAR(30)
 
 ALTER TABLE [dbo].[DHLTrackingNumber]  WITH CHECK ADD  CONSTRAINT [FK_DHLTrackingNumber_DHLShipment] FOREIGN KEY([DHLShipmentID])
 REFERENCES [dbo].[DHLShipment] ([DHLShipmentID])
