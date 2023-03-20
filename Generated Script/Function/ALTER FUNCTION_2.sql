@@ -3,7 +3,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE FUNCTION [dbo].[fn_get_cl_request_list] -- select * from [fn_get_cl_request_list]('xupj21wdn', 'Import Export','xupj21wdn') 
+ALTER FUNCTION [dbo].[fn_get_cl_request_list] -- select * from [fn_get_cl_request_list]('xupj21wdn', 'Import Export','xupj21wdn') 
 ( 
 	-- Add the parameters for the function here
 	@Username nvarchar(100),
@@ -141,7 +141,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE FUNCTION [dbo].[fn_get_gr_request_list_all] -- select * from [fn_get_gr_request_list_all]('xupj21jpd', 'IMEX')     
+ALTER FUNCTION [dbo].[fn_get_gr_request_list_all] -- select * from [fn_get_gr_request_list_all]('xupj21jpd', 'IMEX')     
 (     
  -- Add the parameters for the function here    
  --@Username nvarchar(100),    
@@ -230,7 +230,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE FUNCTION [dbo].[fn_get_gr_request_list] -- select * from [fn_get_gr_request_list]('xupj21jpd', 'IMEX')   
+ALTER FUNCTION [dbo].[fn_get_gr_request_list] -- select * from [fn_get_gr_request_list]('xupj21jpd', 'IMEX')   
 (   
  -- Add the parameters for the function here  
  @Username nvarchar(100),  
@@ -318,7 +318,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE FUNCTION [dbo].[fn_get_next_approval]  
+ALTER FUNCTION [dbo].[fn_get_next_approval]  
 (    
  -- Add the parameters for the function here    
  @Type nvarchar(100),    
@@ -412,7 +412,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE FUNCTION [dbo].[fn_GetReportDetailTracking] ()
+ALTER FUNCTION [dbo].[fn_GetReportDetailTracking] ()
 RETURNS TABLE
 AS
 RETURN (
@@ -834,7 +834,7 @@ GO
 -- ALTER date: 09 Des 2019                      
 -- Description:    Function untuk melakukan proses email                      
 -- =============================================                      
-CREATE FUNCTION [dbo].[fn_proccess_email_template]                      
+ALTER FUNCTION [dbo].[fn_proccess_email_template]                      
 (                      
     -- Add the parameters for the function here                      
     @requestType nvarchar(100) = '',                      
