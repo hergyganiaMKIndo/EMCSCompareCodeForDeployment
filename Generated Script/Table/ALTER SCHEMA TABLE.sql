@@ -7,8 +7,10 @@ ADD		Type NVARCHAR(10) NULL,
 		ExportShipmentType NVARCHAR(MAX) NULL,
 		Vendor NVARCHAR(MAX) NULL
 
+SET ANSI_WARNINGS OFF;
 ALTER	TABLE CiplItem
 ALTER 	COLUMN Sn NVARCHAR(50)
+SET ANSI_WARNINGS ON;
 
 ALTER TABLE [dbo].[DHLAttachment]  WITH CHECK ADD  CONSTRAINT [FK_DHLAttachment_DHLShipment] FOREIGN KEY([DHLShipmentID])
 REFERENCES [dbo].[DHLShipment] ([DHLShipmentID])
@@ -28,11 +30,15 @@ GO
 ALTER TABLE [dbo].[DHLPerson] CHECK CONSTRAINT [FK_DHLPerson_DHLShipment]
 GO
 
+SET ANSI_WARNINGS OFF;
 ALTER 	TABLE DHLPerson
 ALTER 	COLUMN PhoneNumber NVARCHAR(20)
+SET ANSI_WARNINGS ON;
 
+SET ANSI_WARNINGS OFF;
 ALTER 	TABLE DHLPerson
 ALTER 	COLUMN EmailAddress NVARCHAR(30)
+SET ANSI_WARNINGS ON;
 
 ALTER TABLE [dbo].[DHLTrackingNumber]  WITH CHECK ADD  CONSTRAINT [FK_DHLTrackingNumber_DHLShipment] FOREIGN KEY([DHLShipmentID])
 REFERENCES [dbo].[DHLShipment] ([DHLShipmentID])
@@ -47,7 +53,7 @@ ALTER TABLE [dbo].[DHLTrackingShipmentEvent] CHECK CONSTRAINT [FK_DHLTrackingShi
 GO
 
 ALTER	TABLE MasterVendor
-ADD		IsManualEntry BIT NOT NULL
+ADD		IsManualEntry BIT
 
 ALTER TABLE [dbo].[MasterVendor] ADD  DEFAULT ((0)) FOR [IsManualEntry]
 GO
@@ -60,153 +66,7 @@ ADD		NpeDateSubmitToCustomOffice DATETIME NULL,
 ALTER	TABLE ShippingInstruction
 ADD		ExportType NVARCHAR(10) NULL
 
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ShippingFleet_Change](
-	[Id] [bigint] IDENTITY(1,1) NOT NULL,
-	[IdShippingFleet] [bigint] NOT NULL,
-	[IdGr] [bigint] NOT NULL,
-	[IdCipl] [nvarchar](max) NULL,
-	[DoNo] [nvarchar](max) NULL,
-	[DaNo] [nvarchar](50) NOT NULL,
-	[PicName] [nvarchar](100) NOT NULL,
-	[PhoneNumber] [nvarchar](100) NULL,
-	[KtpNumber] [nvarchar](100) NULL,
-	[SimNumber] [nvarchar](100) NULL,
-	[SimExpiryDate] [datetime] NULL,
-	[StnkNumber] [nvarchar](100) NULL,
-	[KirNumber] [nvarchar](50) NULL,
-	[KirExpire] [datetime] NULL,
-	[NopolNumber] [nvarchar](100) NULL,
-	[EstimationTimePickup] [datetime] NULL,
-	[Apar] [bit] NULL,
-	[Apd] [bit] NULL,
-	[FileName] [nvarchar](max) NULL,
-	[Bast] [nvarchar](max) NULL,
-	[Status] [nvarchar](max) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ShippingFleet_History](
-	[Id] [bigint] IDENTITY(1,1) NOT NULL,
-	[IdShippingFleet] [bigint] NOT NULL,
-	[IdGr] [bigint] NOT NULL,
-	[IdCipl] [nvarchar](max) NULL,
-	[DoNo] [nvarchar](max) NULL,
-	[DaNo] [nvarchar](50) NOT NULL,
-	[PicName] [nvarchar](100) NOT NULL,
-	[PhoneNumber] [nvarchar](100) NULL,
-	[KtpNumber] [nvarchar](100) NULL,
-	[SimNumber] [nvarchar](100) NULL,
-	[SimExpiryDate] [datetime] NULL,
-	[StnkNumber] [nvarchar](100) NULL,
-	[KirNumber] [nvarchar](50) NULL,
-	[KirExpire] [datetime] NULL,
-	[NopolNumber] [nvarchar](100) NULL,
-	[EstimationTimePickup] [datetime] NULL,
-	[Apar] [bit] NULL,
-	[Apd] [bit] NULL,
-	[FileName] [nvarchar](max) NULL,
-	[Bast] [nvarchar](max) NULL,
-	[Status] [nvarchar](max) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ShippingFleet](
-	[Id] [bigint] IDENTITY(1,1) NOT NULL,
-	[IdGr] [bigint] NOT NULL,
-	[IdCipl] [bigint] NULL,
-	[DoNo] [nvarchar](max) NULL,
-	[DaNo] [nvarchar](50) NOT NULL,
-	[PicName] [nvarchar](100) NOT NULL,
-	[PhoneNumber] [nvarchar](100) NULL,
-	[KtpNumber] [nvarchar](100) NULL,
-	[SimNumber] [nvarchar](100) NULL,
-	[SimExpiryDate] [smalldatetime] NULL,
-	[StnkNumber] [nvarchar](100) NULL,
-	[KirNumber] [nvarchar](50) NULL,
-	[KirExpire] [smalldatetime] NULL,
-	[NopolNumber] [nvarchar](100) NULL,
-	[EstimationTimePickup] [smalldatetime] NULL,
-	[Apar] [bit] NULL,
-	[Apd] [bit] NULL,
-	[FileName] [nvarchar](max) NULL,
-	[Bast] [nvarchar](max) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ShippingFleetDocumentHistory](
-	[Id] [bigint] IDENTITY(1,1) NOT NULL,
-	[IdShippingFleet] [bigint] NOT NULL,
-	[FileName] [nvarchar](max) NOT NULL,
-	[CreateDate] [datetime] NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ShippingFleetItem](
-	[Id] [bigint] IDENTITY(1,1) NOT NULL,
-	[IdShippingFleet] [bigint] NOT NULL,
-	[IdGr] [bigint] NOT NULL,
-	[IdCipl] [bigint] NOT NULL,
-	[IdCiplItem] [bigint] NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ShippingFleetRefrence](
-	[Id] [bigint] IDENTITY(1,1) NOT NULL,
-	[IdShippingFleet] [bigint] NOT NULL,
-	[IdGr] [bigint] NOT NULL,
-	[IdCipl] [bigint] NOT NULL,
-	[DoNo] [nvarchar](max) NOT NULL,
-	[CreateDate] [datetime] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-
+SET ANSI_WARNINGS OFF;
 ALTER TABLE ShippingFleet
 ALTER COLUMN IdCipl BIGINT
+SET ANSI_WARNINGS ON;
